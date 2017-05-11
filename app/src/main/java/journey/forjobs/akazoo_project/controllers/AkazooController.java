@@ -118,6 +118,7 @@ public class AkazooController extends Service {
             @Override
             public void handleFailure(int statusCode, String statusMessage) {
                 super.handleFailure(statusCode, statusMessage);
+                sendSucessfullBroadcastMessage(Const.REST_TRACKS_FAIL);
             }
         });
 

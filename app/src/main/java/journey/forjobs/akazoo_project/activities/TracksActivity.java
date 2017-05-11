@@ -17,13 +17,9 @@ import java.util.ArrayList;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import journey.forjobs.akazoo_project.R;
-import journey.forjobs.akazoo_project.application.AkazooApplication;
-import journey.forjobs.akazoo_project.controllers.AkazooController;
 import journey.forjobs.akazoo_project.database.DBTableHelper;
-import journey.forjobs.akazoo_project.database.PlaylistContentProvider;
 import journey.forjobs.akazoo_project.database.TracksContentProvider;
 import journey.forjobs.akazoo_project.listadapters.TracksListAdapter;
-import journey.forjobs.akazoo_project.model.Playlist;
 import journey.forjobs.akazoo_project.model.Track;
 import journey.forjobs.akazoo_project.utils.Const;
 
@@ -67,7 +63,7 @@ public class TracksActivity extends AkazooActivity {
     }
 
     private void updateTracksList() {
-        ArrayList<Track> allTracks = new ArrayList<Track>();
+        ArrayList<Track> allTracks = new ArrayList<>();
         Cursor mCursor;
 
         //used to know which columns name we need to retrieve
@@ -117,9 +113,7 @@ public class TracksActivity extends AkazooActivity {
 
             });
 
+            mCursor.close();
         }
-
-
-
     }
 }
