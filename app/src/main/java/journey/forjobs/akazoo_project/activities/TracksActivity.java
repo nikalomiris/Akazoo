@@ -53,6 +53,8 @@ public class TracksActivity extends AkazooActivity {
 
         LocalBroadcastManager.getInstance(this).registerReceiver(getmMessageReceiver(),
                 new IntentFilter(Const.SERVICE_BIND));
+
+        //TODO Receive intent and get playlist id
     }
 
 
