@@ -84,6 +84,8 @@ public class PlaylistsActivity extends AkazooActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     showSnackbar("You have clicked on: " + mPlaylistsListAdapter.getPlaylists().
                             get(position).getName());
+
+                    // TODO Create intent for launching tracks activity
                 }
 
             });
