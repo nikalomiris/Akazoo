@@ -1,5 +1,6 @@
 package journey.forjobs.akazoo_project.fragments;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import journey.forjobs.akazoo_project.R;
+import journey.forjobs.akazoo_project.activities.TracksActivity;
 import journey.forjobs.akazoo_project.database.DBTableHelper;
 import journey.forjobs.akazoo_project.database.PlaylistContentProvider;
 import journey.forjobs.akazoo_project.listadapters.PlaylistsListAdapter;
@@ -44,7 +46,8 @@ public class PlaylistsFragment extends Fragment  {
         //used to know which columns name we need to retrieve
         String[] mProjection = {
                 DBTableHelper.COLUMN_PLAYLISTS_NAME,
-                DBTableHelper.COLUMN_PLAYLISTS_TRACK_COUNT
+                DBTableHelper.COLUMN_PLAYLISTS_TRACK_COUNT,
+                DBTableHelper.COLUMN_PLAYLISTS_PLAYLIST_ID
         };
 
         //queries the database
@@ -62,9 +65,11 @@ public class PlaylistsFragment extends Fragment  {
 
                 String playlistName = mCursor.getString(mCursor.getColumnIndex(DBTableHelper.COLUMN_PLAYLISTS_NAME));
                 int numberOfTracks = mCursor.getInt(mCursor.getColumnIndex(DBTableHelper.COLUMN_PLAYLISTS_TRACK_COUNT));
+                String playlistId = mCursor.getString(mCursor.getColumnIndex(DBTableHelper.COLUMN_PLAYLISTS_PLAYLIST_ID));
 
                 playlist.setName(playlistName);
                 playlist.setItemCount(numberOfTracks);
+                playlist.setPlaylistId(playlistId);
 
                 Log.d("MA TAG", "the track name is " + playlist.getName());
                 Log.d("MA TAG", "the track artist name is  " + Integer.toString(playlist.getItemCount()));
@@ -83,6 +88,10 @@ public class PlaylistsFragment extends Fragment  {
                             get(position).getName());
 
                     // TODO Create intent for launching tracks activity
+                    Intent intent = new Intent(getActivity(), TracksActivity.class);
+                    intent.putExtra("playlistId", mPlaylistsListAdapter.getPlaylists().get(position)
+                    .getPlaylistId());
+                    startActivity(intent);
                 }
 
             });
