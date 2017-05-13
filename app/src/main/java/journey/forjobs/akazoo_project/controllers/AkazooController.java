@@ -87,7 +87,7 @@ public class AkazooController extends Service {
             @Override
             public void handleFailure(int statusCode, String statusMessage) {
                 super.handleFailure(statusCode, statusMessage);
-                sendSucessfullBroadcastMessage(Const.REST_PLAYLISTS_FAIL);
+                sendFailureBroadcastMessage(Const.REST_PLAYLISTS_FAIL);
             }
         });
     }
@@ -118,7 +118,7 @@ public class AkazooController extends Service {
             @Override
             public void handleFailure(int statusCode, String statusMessage) {
                 super.handleFailure(statusCode, statusMessage);
-                sendSucessfullBroadcastMessage(Const.REST_TRACKS_FAIL);
+                sendFailureBroadcastMessage(Const.REST_TRACKS_FAIL);
             }
         });
 
@@ -139,7 +139,7 @@ public class AkazooController extends Service {
 
         @Override
         public void handleException() {
-            sendFailureBroadcastMessage(Const.REST_SERVICE_DOWN);
+            sendFailureBroadcastMessage(getString(R.string.rest_exception_popup_message));
         }
     }
 

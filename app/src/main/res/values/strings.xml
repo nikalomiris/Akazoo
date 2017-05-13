@@ -14,4 +14,7 @@
         <string name="playlists_error_message">Sorry we didnt find any playlists</string>
 
         <string name="transition_playlist_name">transition_playlist_name</string>
+    <string name="popup_error_title">Error</string>
+        <string name="popup_neutral_button">OK</string>
+        <string name="rest_exception_popup_message">Oooops! Something went wrong!</string>
 </resources>
