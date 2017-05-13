@@ -84,8 +84,8 @@ public class PlaylistsFragment extends Fragment  {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    showSnackbar("(Fragment) You have clicked on: " + mPlaylistsListAdapter.getPlaylists().
-                            get(position).getName());
+//                    showSnackbar("(Fragment) You have clicked on: " + mPlaylistsListAdapter.getPlaylists().
+//                            get(position).getName());
 
                     // TODO Create intent for launching tracks activity
                     Intent intent = new Intent(getActivity(), TracksActivity.class);

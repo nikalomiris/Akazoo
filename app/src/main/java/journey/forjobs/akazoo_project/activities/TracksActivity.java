@@ -13,14 +13,12 @@ import journey.forjobs.akazoo_project.utils.Const;
 
 public class TracksActivity extends AkazooActivity {
 
-//    "2a09e82b-7df8-4988-a371-90c64fb67586"
-
     private MyMessageReceiver mMessageReceiver = new MyMessageReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             super.onReceive(context, intent);
             if (intent.getAction().equals(Const.SERVICE_BIND)) {
-                getAkazooController().getTracks(playlistId);
+                getAkazooController().getTracks("2a09e82b-7df8-4988-a371-90c64fb67586");
             } else if (message.equals(Const.REST_TRACKS_SUCCESS)) {
                 mTracksFragment.updateTracksList();
             }
@@ -40,8 +38,6 @@ public class TracksActivity extends AkazooActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracks);
         ButterKnife.inject(this);
-        playlistId = getIntent().getStringExtra("playlistId");
-        getAkazooController().getTracks(playlistId);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(getmMessageReceiver(),
                 new IntentFilter(Const.SERVICE_BIND));
@@ -52,5 +48,7 @@ public class TracksActivity extends AkazooActivity {
         }
 
         //TODO Receive intent and get playlist id
+        playlistId = getIntent().getStringExtra("playlistId");
+        getAkazooController().getTracks(playlistId);
     }
 }
