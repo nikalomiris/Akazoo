@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\nickgoodfate\AndroidStudioProjects\Akazoo\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\virus\AndroidStudioProjects\Akazoo\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1c3bcaffb47e03b246248ae54d3b62561b1527e2">
+        <dex dex="C:\Users\virus\AndroidStudioProjects\Akazoo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_68aea2dbc985f5be18d3daa6a7cab9bc7eeb7167\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\virus\AndroidStudioProjects\Akazoo\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="C:\Users\nickgoodfate\AndroidStudioProjects\Akazoo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_49d4db8b9c65fa4924e51599516697f4e5f40b8b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\nickgoodfate\AndroidStudioProjects\Akazoo\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="25e171e2aad72ac20f39fb871a4d2df06dbb38e5">
-        <dex dex="C:\Users\nickgoodfate\AndroidStudioProjects\Akazoo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_640a66d8caa4a3a40e5b1afbe101c0ae1a8620d2\classes.dex" />
+        <dex dex="C:\Users\virus\AndroidStudioProjects\Akazoo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_200865f46870411bc6ae5ce449881285d6e1bc66\classes.dex" />
     </item>
 
 </items>

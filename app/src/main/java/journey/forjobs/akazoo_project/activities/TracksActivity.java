@@ -3,26 +3,12 @@ package journey.forjobs.akazoo_project.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import journey.forjobs.akazoo_project.R;
-import journey.forjobs.akazoo_project.database.DBTableHelper;
-import journey.forjobs.akazoo_project.database.TracksContentProvider;
 import journey.forjobs.akazoo_project.fragments.TracksFragment;
-import journey.forjobs.akazoo_project.listadapters.TracksListAdapter;
-import journey.forjobs.akazoo_project.model.Track;
 import journey.forjobs.akazoo_project.utils.Const;
 
 public class TracksActivity extends AkazooActivity {
@@ -61,12 +47,5 @@ public class TracksActivity extends AkazooActivity {
         }
 
         //TODO Receive intent and get playlist id
-    }
-
-
-    protected void showSnackbar(String message) {
-        Snackbar mySnackbar = Snackbar.make(findViewById(R.id.root),
-                message, Snackbar.LENGTH_LONG);
-        mySnackbar.show();
     }
 }
