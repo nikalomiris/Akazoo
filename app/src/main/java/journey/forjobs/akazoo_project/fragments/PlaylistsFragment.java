@@ -82,6 +82,8 @@ public class PlaylistsFragment extends Fragment  {
                     showSnackbar("(Fragment) You have clicked on: " + mPlaylistsListAdapter.getPlaylists().
                             get(position).getName());
 
+                    // TODO Check if the server response is correct
+
                     // TODO Create intent for launching tracks activity
                 }
 
