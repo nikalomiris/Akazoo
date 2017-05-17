@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,8 @@ public class TracksFragment extends Fragment  {
 
     @InjectView(R.id.tracks_list)
     ListView mTracksList;
+    @InjectView(R.id.playlist_title_tv)
+    TextView mPlaylistTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +39,7 @@ public class TracksFragment extends Fragment  {
 
     }
 
-    public void updateTracksList() {
+    public void updateTracksList(String playlistTitle) {
         ArrayList<Track> allTracks = new ArrayList<>();
         Cursor mCursor;
 
@@ -76,6 +79,7 @@ public class TracksFragment extends Fragment  {
 
             final TracksListAdapter mTracksListAdapter = new TracksListAdapter(getActivity(), allTracks);
             mTracksList.setAdapter(mTracksListAdapter);
+            mPlaylistTitle.setText(playlistTitle);
 
             mTracksList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

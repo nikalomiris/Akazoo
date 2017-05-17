@@ -91,6 +91,8 @@ public class PlaylistsFragment extends Fragment  {
                     Intent intent = new Intent(getActivity(), TracksActivity.class);
                     intent.putExtra("playlistId", mPlaylistsListAdapter.getPlaylists().get(position)
                     .getPlaylistId());
+                    intent.putExtra("playlistTitle", mPlaylistsListAdapter.getPlaylists().get(position)
+                    .getName());
                     startActivity(intent);
                 }
 
