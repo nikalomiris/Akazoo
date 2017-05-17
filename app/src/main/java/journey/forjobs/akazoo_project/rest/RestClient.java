@@ -1,8 +1,12 @@
 package journey.forjobs.akazoo_project.rest;
 
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
+
 import java.util.concurrent.TimeUnit;
 
 import journey.forjobs.akazoo_project.BuildConfig;
+import journey.forjobs.akazoo_project.application.AkazooApplication;
 import journey.forjobs.akazoo_project.utils.Const;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -22,6 +26,7 @@ public class RestClient {
 
 
     public static RestAPI call() {
+        sendSucessfullBroadcastMessage(Const.SHOW_SPINNER);
         return REST_API;
     }
 
@@ -40,6 +45,13 @@ public class RestClient {
                 .build();
 
         REST_API = retorift.create(RestAPI.class);
+    }
+
+    private static void sendSucessfullBroadcastMessage(String message) {
+        Intent intent = new Intent(Const.CONTROLLER_SUCCESSFULL_CALLBACK);
+        intent.putExtra(Const.CONTROLLER_SUCCESSFULL_CALLBACK_MESSAGE, message);
+        LocalBroadcastManager.getInstance(AkazooApplication.getInstance().getApplicationContext())
+                .sendBroadcast(intent);
     }
 
 

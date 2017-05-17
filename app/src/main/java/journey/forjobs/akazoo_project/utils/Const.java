@@ -29,4 +29,5 @@ public class Const {
     public static final String REST_TRACKS_FAIL = "REST_TRACKS_FAIL";
 
     public static final String REST_SERVICE_DOWN = "REST_SERVICE_DOWN";
+    public static final String SHOW_SPINNER = "SHOW_SPINNER";
 }
