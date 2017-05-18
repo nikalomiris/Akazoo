@@ -46,6 +46,7 @@ public abstract class AkazooActivity extends AppCompatActivity {
     final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
     alertDialog.setMessage(message);
     alertDialog.setTitle(getString(R.string.popup_error_title));
+    alertDialog.setIcon(R.drawable.ic_error_outline_red_400_24dp);
     alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getString(R.string.popup_neutral_button),
         new DialogInterface.OnClickListener() {
           @Override
