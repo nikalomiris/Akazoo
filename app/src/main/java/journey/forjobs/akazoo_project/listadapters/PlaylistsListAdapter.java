@@ -51,8 +51,8 @@ public class PlaylistsListAdapter extends ArrayAdapter<Playlist> {
             view.setTag(holder);
         }
         holder.playlistName.setText(mPlaylists.get(position).getName());
-        holder.numberOfTrucks.setText(" # of trucks: " + Integer.toString(mPlaylists.get(position)
-                .getItemCount()));
+        holder.numberOfTrucks.setText(Integer.toString(mPlaylists.get(position).getItemCount())
+                + " tracks");
         return view;
     }
 

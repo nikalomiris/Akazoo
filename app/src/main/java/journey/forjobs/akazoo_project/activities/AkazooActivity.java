@@ -1,5 +1,6 @@
 package journey.forjobs.akazoo_project.activities;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,8 +29,12 @@ public abstract class AkazooActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Const.CONTROLLER_SUCCESSFULL_CALLBACK)) {
                 message = intent.getStringExtra(Const.CONTROLLER_SUCCESSFULL_CALLBACK_MESSAGE);
+                if (message.equals(Const.SHOW_SPINNER)){
+                    showProgressDialog(getString(R.string.progress_dialog_message));
+                } else hideProgressDialog();
             } else if (intent.getAction().equals(Const.CONTROLLER_FAILURE_CALLBACK)) {
                 message = intent.getStringExtra(Const.CONTROLLER_FAILURE_CALLBACK_MESSAGE);
+                hideProgressDialog();
                 showErrorDialog(message);
             }
         }
@@ -52,17 +57,31 @@ public abstract class AkazooActivity extends AppCompatActivity {
 
     protected abstract MyMessageReceiver getmMessageReceiver();
 
+    ProgressDialog dialog;
+
+    protected void showProgressDialog(String message) {
+        dialog = new ProgressDialog(this);
+        dialog.setMessage(message);
+        dialog.show();
+    }
+
+    protected void hideProgressDialog() {
+        if (dialog != null)
+        dialog.dismiss();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(getmMessageReceiver(),
+                new IntentFilter(Const.CONTROLLER_SUCCESSFULL_CALLBACK));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         //Enable activity to listen to broadcast messages
-        LocalBroadcastManager.getInstance(this).registerReceiver(getmMessageReceiver(),
-                new IntentFilter(Const.CONTROLLER_SUCCESSFULL_CALLBACK));
 
         LocalBroadcastManager.getInstance(this).registerReceiver(getmMessageReceiver(),
                 new IntentFilter(Const.CONTROLLER_FAILURE_CALLBACK));

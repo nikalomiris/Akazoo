@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 
 import butterknife.ButterKnife;
@@ -48,10 +47,9 @@ public class PlaylistsActivity extends AkazooActivity {
         }
     }
 
-    protected void showSnackbar(String message) {
-        Snackbar mySnackbar = Snackbar.make(findViewById(R.id.root),
-                message, Snackbar.LENGTH_LONG);
-        mySnackbar.show();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPlaylistsFragment.updatePlaylistList();
     }
-
 }

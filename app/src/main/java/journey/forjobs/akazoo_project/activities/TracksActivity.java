@@ -18,9 +18,9 @@ public class TracksActivity extends AkazooActivity {
         public void onReceive(Context context, Intent intent) {
             super.onReceive(context, intent);
             if (intent.getAction().equals(Const.SERVICE_BIND)) {
-                getAkazooController().getTracks("768f797f-ce35-4515-b6d8-56dcf91b8253");
+                getAkazooController().getTracks("2a09e82b-7df8-4988-a371-90c64fb67586");
             } else if (message.equals(Const.REST_TRACKS_SUCCESS)) {
-                mTracksFragment.updateTracksList();
+                mTracksFragment.updateTracksList(playlistTitle);
             }
         }
     };
@@ -31,6 +31,8 @@ public class TracksActivity extends AkazooActivity {
     }
 
     TracksFragment mTracksFragment;
+    String playlistId;
+    String playlistTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,5 +49,8 @@ public class TracksActivity extends AkazooActivity {
         }
 
         //TODO Receive intent and get playlist id
+        playlistId = getIntent().getStringExtra("playlistId");
+        playlistTitle = getIntent().getStringExtra("playlistTitle");
+        getAkazooController().getTracks(playlistId);
     }
 }
