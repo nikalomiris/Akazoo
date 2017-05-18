@@ -11,47 +11,55 @@ import android.util.Log;
  */
 public class DBTableHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Akazoo.db";
+  public static final String DATABASE_NAME = "Akazoo.db";
 
-    public static final int DATABASE_VERSION = 1;
+  public static final int DATABASE_VERSION = 1;
 
-    public DBTableHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
+  public DBTableHelper(Context context) {
+    super(context, DATABASE_NAME, null, DATABASE_VERSION);
+  }
 
-    // Table Playlists
-    public static final String TABLE_PLAYLISTS = "table_playlists";
-    public static final String COLUMN_PLAYLISTS_ID = "_id";
-    public static final String COLUMN_PLAYLISTS_NAME = "playlist_name";
-    public static final String COLUMN_PLAYLISTS_TRACK_COUNT = "playlist_track_count";
-    public static final String COLUMN_PLAYLISTS_PLAYLIST_ID = "playlist_id";
+  // Table Playlists
+  public static final String TABLE_PLAYLISTS = "table_playlists";
+  public static final String COLUMN_PLAYLISTS_ID = "_id";
+  public static final String COLUMN_PLAYLISTS_NAME = "playlist_name";
+  public static final String COLUMN_PLAYLISTS_TRACK_COUNT = "playlist_track_count";
+  public static final String COLUMN_PLAYLISTS_PLAYLIST_ID = "playlist_id";
 
-    // Table Tracks
-    public static final String TABLE_TRACKS = "table_tracks";
-    public static final String COLUMN_TRACKS_ID = "_id";
-    public static final String COLUMN_TRACK_NAME = "track_name";
-    public static final String COLUMN_TRACK_ARTIST = "track_artist";
-    public static final String COLUMN_TRACK_IMAGE_URL = "track_image_url";
+  // Table Tracks
+  public static final String TABLE_TRACKS = "table_tracks";
+  public static final String COLUMN_TRACKS_ID = "_id";
+  public static final String COLUMN_TRACK_NAME = "track_name";
+  public static final String COLUMN_TRACK_ARTIST = "track_artist";
+  public static final String COLUMN_TRACK_IMAGE_URL = "track_image_url";
 
-    // SQL statement to create table users
-    private static final String CREATE_TABLE_PLAYLISTS = "create table " + TABLE_PLAYLISTS + "(" + COLUMN_PLAYLISTS_ID + " integer primary key autoincrement, " + COLUMN_PLAYLISTS_NAME + " text, " + COLUMN_PLAYLISTS_TRACK_COUNT
-            + " integer, " + COLUMN_PLAYLISTS_PLAYLIST_ID + " text" + ");";
+  // SQL statement to create table users
+  private static final String CREATE_TABLE_PLAYLISTS =
+      "create table " + TABLE_PLAYLISTS + "(" + COLUMN_PLAYLISTS_ID
+          + " integer primary key autoincrement, " + COLUMN_PLAYLISTS_NAME + " text, "
+          + COLUMN_PLAYLISTS_TRACK_COUNT
+          + " integer, " + COLUMN_PLAYLISTS_PLAYLIST_ID + " text" + ");";
 
-    // SQL statement to create table tracks
-    private static final String CREATE_TABLE_TRACKS = "create table " + TABLE_TRACKS + "(" + COLUMN_TRACKS_ID + " integer primary key autoincrement, " + COLUMN_TRACK_NAME + " text, " + COLUMN_TRACK_ARTIST
-            + " text, " + COLUMN_TRACK_IMAGE_URL + " text" + ");";
+  // SQL statement to create table tracks
+  private static final String CREATE_TABLE_TRACKS =
+      "create table " + TABLE_TRACKS + "(" + COLUMN_TRACKS_ID
+          + " integer primary key autoincrement, " + COLUMN_TRACK_NAME + " text, "
+          + COLUMN_TRACK_ARTIST
+          + " text, " + COLUMN_TRACK_IMAGE_URL + " text" + ");";
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_PLAYLISTS);
-        db.execSQL(CREATE_TABLE_TRACKS);
-    }
+  @Override
+  public void onCreate(SQLiteDatabase db) {
+    db.execSQL(CREATE_TABLE_PLAYLISTS);
+    db.execSQL(CREATE_TABLE_TRACKS);
+  }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.e(DBTableHelper.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYLISTS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRACKS);
-        onCreate(db);
-    }
+  @Override
+  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    Log.e(DBTableHelper.class.getName(),
+        "Upgrading database from version " + oldVersion + " to " + newVersion
+            + ", which will destroy all old data");
+    db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYLISTS);
+    db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRACKS);
+    onCreate(db);
+  }
 }

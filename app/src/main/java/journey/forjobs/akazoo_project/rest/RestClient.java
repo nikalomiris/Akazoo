@@ -18,41 +18,41 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RestClient {
 
-    private static RestAPI REST_API;
+  private static RestAPI REST_API;
 
-    static {
-        setupRestClient();
-    }
+  static {
+    setupRestClient();
+  }
 
 
-    public static RestAPI call() {
-        sendSucessfullBroadcastMessage(Const.SHOW_SPINNER);
-        return REST_API;
-    }
+  public static RestAPI call() {
+    sendSucessfullBroadcastMessage(Const.SHOW_SPINNER);
+    return REST_API;
+  }
 
-    private static void setupRestClient() {
+  private static void setupRestClient() {
 
-        OkHttpClient mOkHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(Const.REST_CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(Const.REST_READ_TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build();
+    OkHttpClient mOkHttpClient = new OkHttpClient.Builder()
+        .connectTimeout(Const.REST_CONNECT_TIMEOUT, TimeUnit.SECONDS)
+        .readTimeout(Const.REST_READ_TIMEOUT, TimeUnit.SECONDS)
+        .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        .build();
 
-        final Retrofit retorift = new Retrofit.Builder()
-                .baseUrl(BuildConfig.HOST)
-                .client(mOkHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    final Retrofit retorift = new Retrofit.Builder()
+        .baseUrl(BuildConfig.HOST)
+        .client(mOkHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build();
 
-        REST_API = retorift.create(RestAPI.class);
-    }
+    REST_API = retorift.create(RestAPI.class);
+  }
 
-    private static void sendSucessfullBroadcastMessage(String message) {
-        Intent intent = new Intent(Const.CONTROLLER_SUCCESSFULL_CALLBACK);
-        intent.putExtra(Const.CONTROLLER_SUCCESSFULL_CALLBACK_MESSAGE, message);
-        LocalBroadcastManager.getInstance(AkazooApplication.getInstance().getApplicationContext())
-                .sendBroadcast(intent);
-    }
+  private static void sendSucessfullBroadcastMessage(String message) {
+    Intent intent = new Intent(Const.CONTROLLER_SUCCESSFULL_CALLBACK);
+    intent.putExtra(Const.CONTROLLER_SUCCESSFULL_CALLBACK_MESSAGE, message);
+    LocalBroadcastManager.getInstance(AkazooApplication.getInstance().getApplicationContext())
+        .sendBroadcast(intent);
+  }
 
 
 }

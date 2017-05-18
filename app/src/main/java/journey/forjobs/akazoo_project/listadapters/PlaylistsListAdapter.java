@@ -17,52 +17,53 @@ import journey.forjobs.akazoo_project.model.Playlist;
 
 public class PlaylistsListAdapter extends ArrayAdapter<Playlist> {
 
-    List<Playlist> mPlaylists = new ArrayList<>();
-    Context context;
+  List<Playlist> mPlaylists = new ArrayList<>();
+  Context context;
 
-    public PlaylistsListAdapter(Context context, List<Playlist> mPlaylists) {
-        super(context, R.layout.vw_list_item_track, mPlaylists);
-        this.mPlaylists = mPlaylists;
-        this.context = context;
+  public PlaylistsListAdapter(Context context, List<Playlist> mPlaylists) {
+    super(context, R.layout.vw_list_item_track, mPlaylists);
+    this.mPlaylists = mPlaylists;
+    this.context = context;
+  }
+
+  static class ViewHolder {
+
+    @InjectView(R.id.playlist_name)
+    TextView playlistName;
+    @InjectView(R.id.number_of_tracks)
+    TextView numberOfTrucks;
+
+    public ViewHolder(View view) {
+      ButterKnife.inject(this, view);
     }
+  }
 
-    static class ViewHolder {
-        @InjectView(R.id.playlist_name)
-        TextView playlistName;
-        @InjectView(R.id.number_of_tracks)
-        TextView numberOfTrucks;
-        public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
-        }
+  @Override
+  public View getView(int position, View view, ViewGroup parent) {
+    ViewHolder holder;
+    if (view != null) {
+      holder = (ViewHolder) view.getTag();
+    } else {
+      LayoutInflater inflater = (LayoutInflater) context
+          .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+      view = inflater.inflate(R.layout.vw_list_item_playlist, parent, false);
+
+      holder = new ViewHolder(view);
+      view.setTag(holder);
     }
-
-    @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        ViewHolder holder;
-        if (view != null) {
-            holder = (ViewHolder) view.getTag();
-        } else {
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            view = inflater.inflate(R.layout.vw_list_item_playlist, parent, false);
-
-            holder = new ViewHolder(view);
-            view.setTag(holder);
-        }
-        holder.playlistName.setText(mPlaylists.get(position).getName());
-        holder.numberOfTrucks.setText(Integer.toString(mPlaylists.get(position).getItemCount())
-                + " tracks");
-        return view;
-    }
+    holder.playlistName.setText(mPlaylists.get(position).getName());
+    holder.numberOfTrucks.setText(Integer.toString(mPlaylists.get(position).getItemCount())
+        + " tracks");
+    return view;
+  }
 
 
+  public List<Playlist> getPlaylists() {
+    return mPlaylists;
+  }
 
-    public List<Playlist> getPlaylists() {
-        return mPlaylists;
-    }
-
-    public void setPlaylists(List<Playlist> playlists) {
-        this.mPlaylists = playlists;
-    }
+  public void setPlaylists(List<Playlist> playlists) {
+    this.mPlaylists = playlists;
+  }
 }
