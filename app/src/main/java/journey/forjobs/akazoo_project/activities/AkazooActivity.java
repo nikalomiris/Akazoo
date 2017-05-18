@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-
 import journey.forjobs.akazoo_project.application.AkazooApplication;
 import journey.forjobs.akazoo_project.controllers.AkazooController;
 import journey.forjobs.akazoo_project.utils.Const;
