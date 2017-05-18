@@ -47,6 +47,7 @@ public class PlaylistsFragment extends Fragment {
     String[] mProjection = {
         DBTableHelper.COLUMN_PLAYLISTS_NAME,
         DBTableHelper.COLUMN_PLAYLISTS_TRACK_COUNT,
+        DBTableHelper.COLUMN_PLAYLISTS_IMAGE_URL,
         DBTableHelper.COLUMN_PLAYLISTS_PLAYLIST_ID
     };
 
@@ -68,11 +69,14 @@ public class PlaylistsFragment extends Fragment {
             .getString(mCursor.getColumnIndex(DBTableHelper.COLUMN_PLAYLISTS_NAME));
         int numberOfTracks = mCursor
             .getInt(mCursor.getColumnIndex(DBTableHelper.COLUMN_PLAYLISTS_TRACK_COUNT));
+        String imageURL = mCursor
+            .getString(mCursor.getColumnIndex(DBTableHelper.COLUMN_PLAYLISTS_IMAGE_URL));
         String playlistId = mCursor
             .getString(mCursor.getColumnIndex(DBTableHelper.COLUMN_PLAYLISTS_PLAYLIST_ID));
 
         playlist.setName(playlistName);
         playlist.setItemCount(numberOfTracks);
+        playlist.setPhotoUrl(imageURL);
         playlist.setPlaylistId(playlistId);
 
         Log.d("MA TAG", "the track name is " + playlist.getName());

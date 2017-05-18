@@ -77,6 +77,7 @@ public class AkazooController extends Service {
             values.put(DBTableHelper.COLUMN_PLAYLISTS_NAME, pl.getName());
             values.put(DBTableHelper.COLUMN_PLAYLISTS_TRACK_COUNT, pl.getItemCount());
             values.put(DBTableHelper.COLUMN_PLAYLISTS_PLAYLIST_ID, pl.getPlaylistId());
+            values.put(DBTableHelper.COLUMN_PLAYLISTS_IMAGE_URL, pl.getPhotoUrl());
             getContentResolver().insert(
                 PlaylistContentProvider.CONTENT_URI, values);
           }
