@@ -9,10 +9,10 @@ import retrofit2.http.Query;
 
 public interface RestAPI {
 
-    @GET("TestMobileService.svc/playlists")
-    Call<GetPlaylistsResponse> getPlaylists();
+  @GET("TestMobileService.svc/playlists")
+  Call<GetPlaylistsResponse> getPlaylists();
 
-    @GET("TestMobileService.svc/playlist")
-    Call<GetTracksResponse> getTracks(@Query("playlistid") String playlistid);
+  @GET("TestMobileService.svc/playlist")
+  Call<GetTracksResponse> getTracks(@Query("playlistid") String playlistid);
 
 }

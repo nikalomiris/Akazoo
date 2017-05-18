@@ -4,31 +4,32 @@ package journey.forjobs.akazoo_project.rest.pojos;
  * Created by Petros Efthymiou on 22/7/2016.
  */
 public class GenericResponse {
-    private String ErrorData;
-    private int ErrorId;
-    private boolean isError;
 
-    public String getErrorData() {
-        return ErrorData;
-    }
+  private String ErrorData;
+  private int ErrorId;
+  private boolean isError;
 
-    public void setErrorData(String errorData) {
-        ErrorData = errorData;
-    }
+  public String getErrorData() {
+    return ErrorData;
+  }
 
-    public int getErrorId() {
-        return ErrorId;
-    }
+  public void setErrorData(String errorData) {
+    ErrorData = errorData;
+  }
 
-    public void setErrorId(int errorId) {
-        ErrorId = errorId;
-    }
+  public int getErrorId() {
+    return ErrorId;
+  }
 
-    public boolean isError() {
-        return isError;
-    }
+  public void setErrorId(int errorId) {
+    ErrorId = errorId;
+  }
 
-    public void setError(boolean error) {
-        isError = error;
-    }
+  public boolean isError() {
+    return isError;
+  }
+
+  public void setError(boolean error) {
+    isError = error;
+  }
 }

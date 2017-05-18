@@ -23,51 +23,52 @@ import journey.forjobs.akazoo_project.model.Track;
 
 public class TracksListAdapter extends ArrayAdapter<Track> {
 
-    List<Track> tracks = new ArrayList<Track>();
-    Context context;
+  List<Track> tracks = new ArrayList<Track>();
+  Context context;
 
-    public TracksListAdapter(Context context, List<Track> tracks) {
-        super(context, R.layout.vw_list_item_track, tracks);
-        this.tracks = tracks;
-        this.context = context;
+  public TracksListAdapter(Context context, List<Track> tracks) {
+    super(context, R.layout.vw_list_item_track, tracks);
+    this.tracks = tracks;
+    this.context = context;
+  }
+
+  static class ViewHolder {
+
+    @InjectView(R.id.track_name)
+    TextView trackName;
+    @InjectView(R.id.track_artist)
+    TextView trackArtist;
+
+    public ViewHolder(View view) {
+      ButterKnife.inject(this, view);
     }
+  }
 
-    static class ViewHolder {
-        @InjectView(R.id.track_name)
-        TextView trackName;
-        @InjectView(R.id.track_artist)
-        TextView trackArtist;
-        public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
-        }
+  @Override
+  public View getView(int position, View view, ViewGroup parent) {
+    ViewHolder holder;
+    if (view != null) {
+      holder = (ViewHolder) view.getTag();
+    } else {
+      LayoutInflater inflater = (LayoutInflater) context
+          .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+      view = inflater.inflate(R.layout.vw_list_item_track, parent, false);
+
+      holder = new ViewHolder(view);
+      view.setTag(holder);
     }
-
-    @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        ViewHolder holder;
-       if (view != null) {
-            holder = (ViewHolder) view.getTag();
-       } else {
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            view = inflater.inflate(R.layout.vw_list_item_track, parent, false);
-
-            holder = new ViewHolder(view);
-            view.setTag(holder);
-       }
-       holder.trackName.setText(tracks.get(position).getTrackName());
-        holder.trackArtist.setText(tracks.get(position).getArtistName());
-        return view;
-    }
+    holder.trackName.setText(tracks.get(position).getTrackName());
+    holder.trackArtist.setText(tracks.get(position).getArtistName());
+    return view;
+  }
 
 
+  public List<Track> getTracks() {
+    return tracks;
+  }
 
-    public List<Track> getTracks() {
-        return tracks;
-    }
-
-    public void setTracks(List<Track> tracks) {
-        this.tracks = tracks;
-    }
+  public void setTracks(List<Track> tracks) {
+    this.tracks = tracks;
+  }
 }

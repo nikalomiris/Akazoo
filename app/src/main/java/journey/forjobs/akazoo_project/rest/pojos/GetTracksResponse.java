@@ -6,13 +6,14 @@ import journey.forjobs.akazoo_project.model.Playlist;
  * Created by Petros Efthymiou on 22/7/2016.
  */
 public class GetTracksResponse extends GenericResponse {
-    private Playlist Result;
 
-    public Playlist getResult() {
-        return Result;
-    }
+  private Playlist Result;
 
-    public void setResult(Playlist result) {
-        this.Result = result;
-    }
+  public Playlist getResult() {
+    return Result;
+  }
+
+  public void setResult(Playlist result) {
+    this.Result = result;
+  }
 }

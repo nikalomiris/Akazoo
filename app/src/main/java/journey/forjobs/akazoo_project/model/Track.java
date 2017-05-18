@@ -1,49 +1,50 @@
 package journey.forjobs.akazoo_project.model;
 
 public class Track {
-    private String ObjectType;
-    private String ArtistName;
-    private long TrackId;
-    private String TrackName;
-    private String ImageUrl;
 
-    public String getObjectType() {
-        return ObjectType;
-    }
+  private String ObjectType;
+  private String ArtistName;
+  private long TrackId;
+  private String TrackName;
+  private String ImageUrl;
 
-    public void setObjectType(String objectType) {
-        ObjectType = objectType;
-    }
+  public String getObjectType() {
+    return ObjectType;
+  }
 
-    public String getArtistName() {
-        return ArtistName;
-    }
+  public void setObjectType(String objectType) {
+    ObjectType = objectType;
+  }
 
-    public void setArtistName(String artistName) {
-        ArtistName = artistName;
-    }
+  public String getArtistName() {
+    return ArtistName;
+  }
 
-    public long getTrackId() {
-        return TrackId;
-    }
+  public void setArtistName(String artistName) {
+    ArtistName = artistName;
+  }
 
-    public void setTrackId(long trackId) {
-        TrackId = trackId;
-    }
+  public long getTrackId() {
+    return TrackId;
+  }
 
-    public String getTrackName() {
-        return TrackName;
-    }
+  public void setTrackId(long trackId) {
+    TrackId = trackId;
+  }
 
-    public void setTrackName(String trackName) {
-        TrackName = trackName;
-    }
+  public String getTrackName() {
+    return TrackName;
+  }
 
-    public String getImageUrl() {
-        return ImageUrl;
-    }
+  public void setTrackName(String trackName) {
+    TrackName = trackName;
+  }
 
-    public void setImageUrl(String imageUrl) {
-        ImageUrl = imageUrl;
-    }
+  public String getImageUrl() {
+    return ImageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    ImageUrl = imageUrl;
+  }
 }

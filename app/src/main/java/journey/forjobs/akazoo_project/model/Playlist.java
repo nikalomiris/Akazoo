@@ -3,141 +3,142 @@ package journey.forjobs.akazoo_project.model;
 import java.util.ArrayList;
 
 public class Playlist {
-    private String ObjectType;
-    private String DateUpdated;
-    private long Duration;
-    private long FanCount;
-    private boolean IsOwner;
-    private int ItemCount;
-    private String LargePhotoUrl;
-    private String Name;
-    private String OwnerId;
-    private String OwnerNickName;
-    private String OwnerPhotoUrl;
-    private String PhotoUrl;
-    private String PlaylistId;
-    private boolean ViewerIsFan;
-    private ArrayList<Track> Items;
 
-    public String getObjectType() {
-        return ObjectType;
-    }
+  private String ObjectType;
+  private String DateUpdated;
+  private long Duration;
+  private long FanCount;
+  private boolean IsOwner;
+  private int ItemCount;
+  private String LargePhotoUrl;
+  private String Name;
+  private String OwnerId;
+  private String OwnerNickName;
+  private String OwnerPhotoUrl;
+  private String PhotoUrl;
+  private String PlaylistId;
+  private boolean ViewerIsFan;
+  private ArrayList<Track> Items;
 
-    public void setObjectType(String objectType) {
-        ObjectType = objectType;
-    }
+  public String getObjectType() {
+    return ObjectType;
+  }
 
-    public String getDateUpdated() {
-        return DateUpdated;
-    }
+  public void setObjectType(String objectType) {
+    ObjectType = objectType;
+  }
 
-    public void setDateUpdated(String dateUpdated) {
-        DateUpdated = dateUpdated;
-    }
+  public String getDateUpdated() {
+    return DateUpdated;
+  }
 
-    public long getDuration() {
-        return Duration;
-    }
+  public void setDateUpdated(String dateUpdated) {
+    DateUpdated = dateUpdated;
+  }
 
-    public void setDuration(long duration) {
-        Duration = duration;
-    }
+  public long getDuration() {
+    return Duration;
+  }
 
-    public long getFanCount() {
-        return FanCount;
-    }
+  public void setDuration(long duration) {
+    Duration = duration;
+  }
 
-    public void setFanCount(long fanCount) {
-        FanCount = fanCount;
-    }
+  public long getFanCount() {
+    return FanCount;
+  }
 
-    public boolean isOwner() {
-        return IsOwner;
-    }
+  public void setFanCount(long fanCount) {
+    FanCount = fanCount;
+  }
 
-    public void setOwner(boolean owner) {
-        IsOwner = owner;
-    }
+  public boolean isOwner() {
+    return IsOwner;
+  }
 
-    public int getItemCount() {
-        return ItemCount;
-    }
+  public void setOwner(boolean owner) {
+    IsOwner = owner;
+  }
 
-    public void setItemCount(int itemCount) {
-        ItemCount = itemCount;
-    }
+  public int getItemCount() {
+    return ItemCount;
+  }
 
-    public String getLargePhotoUrl() {
-        return LargePhotoUrl;
-    }
+  public void setItemCount(int itemCount) {
+    ItemCount = itemCount;
+  }
 
-    public void setLargePhotoUrl(String largePhotoUrl) {
-        LargePhotoUrl = largePhotoUrl;
-    }
+  public String getLargePhotoUrl() {
+    return LargePhotoUrl;
+  }
 
-    public String getOwnerId() {
-        return OwnerId;
-    }
+  public void setLargePhotoUrl(String largePhotoUrl) {
+    LargePhotoUrl = largePhotoUrl;
+  }
 
-    public void setOwnerId(String ownerId) {
-        OwnerId = ownerId;
-    }
+  public String getOwnerId() {
+    return OwnerId;
+  }
 
-    public String getName() {
-        return Name;
-    }
+  public void setOwnerId(String ownerId) {
+    OwnerId = ownerId;
+  }
 
-    public void setName(String name) {
-        Name = name;
-    }
+  public String getName() {
+    return Name;
+  }
 
-    public String getOwnerNickName() {
-        return OwnerNickName;
-    }
+  public void setName(String name) {
+    Name = name;
+  }
 
-    public void setOwnerNickName(String ownerNickName) {
-        OwnerNickName = ownerNickName;
-    }
+  public String getOwnerNickName() {
+    return OwnerNickName;
+  }
 
-    public String getOwnerPhotoUrl() {
-        return OwnerPhotoUrl;
-    }
+  public void setOwnerNickName(String ownerNickName) {
+    OwnerNickName = ownerNickName;
+  }
 
-    public void setOwnerPhotoUrl(String ownerPhotoUrl) {
-        OwnerPhotoUrl = ownerPhotoUrl;
-    }
+  public String getOwnerPhotoUrl() {
+    return OwnerPhotoUrl;
+  }
 
-    public String getPhotoUrl() {
-        return PhotoUrl;
-    }
+  public void setOwnerPhotoUrl(String ownerPhotoUrl) {
+    OwnerPhotoUrl = ownerPhotoUrl;
+  }
 
-    public void setPhotoUrl(String photoUrl) {
-        PhotoUrl = photoUrl;
-    }
+  public String getPhotoUrl() {
+    return PhotoUrl;
+  }
 
-    public String getPlaylistId() {
-        return PlaylistId;
-    }
+  public void setPhotoUrl(String photoUrl) {
+    PhotoUrl = photoUrl;
+  }
 
-    public void setPlaylistId(String playlistId) {
-        PlaylistId = playlistId;
-    }
+  public String getPlaylistId() {
+    return PlaylistId;
+  }
 
-    public boolean isViewerIsFan() {
-        return ViewerIsFan;
-    }
+  public void setPlaylistId(String playlistId) {
+    PlaylistId = playlistId;
+  }
 
-    public void setViewerIsFan(boolean viewerIsFan) {
-        ViewerIsFan = viewerIsFan;
-    }
+  public boolean isViewerIsFan() {
+    return ViewerIsFan;
+  }
 
-    public ArrayList<Track> getItems() {
-        return Items;
-    }
+  public void setViewerIsFan(boolean viewerIsFan) {
+    ViewerIsFan = viewerIsFan;
+  }
 
-    public void setItems(ArrayList<Track> items) {
-        Items = items;
-    }
+  public ArrayList<Track> getItems() {
+    return Items;
+  }
+
+  public void setItems(ArrayList<Track> items) {
+    Items = items;
+  }
 
 
 }
