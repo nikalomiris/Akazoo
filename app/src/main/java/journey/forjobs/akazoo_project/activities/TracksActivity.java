@@ -9,6 +9,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import butterknife.ButterKnife;
 import journey.forjobs.akazoo_project.R;
 import journey.forjobs.akazoo_project.fragments.TracksFragment;
+import journey.forjobs.akazoo_project.model.Playlist;
 import journey.forjobs.akazoo_project.utils.Const;
 
 public class TracksActivity extends AkazooActivity {
@@ -20,7 +21,8 @@ public class TracksActivity extends AkazooActivity {
       if (intent.getAction().equals(Const.SERVICE_BIND)) {
         getAkazooController().getTracks("2a09e82b-7df8-4988-a371-90c64fb67586");
       } else if (message.equals(Const.REST_TRACKS_SUCCESS)) {
-        mTracksFragment.updateTracksList(playlistTitle);
+        mTracksFragment.updateTracksList(playlistObject.getPhotoUrl(), playlistObject.getName(),
+            playlistObject.getItemCount());
       }
     }
   };
@@ -32,7 +34,7 @@ public class TracksActivity extends AkazooActivity {
 
   TracksFragment mTracksFragment;
   String playlistId;
-  String playlistTitle;
+  Playlist playlistObject;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class TracksActivity extends AkazooActivity {
 
     //TODO Receive intent and get playlist id
     playlistId = getIntent().getStringExtra("playlistId");
-    playlistTitle = getIntent().getStringExtra("playlistTitle");
+    playlistObject = (Playlist) getIntent().getSerializableExtra("playlistObject");
     getAkazooController().getTracks(playlistId);
   }
 }

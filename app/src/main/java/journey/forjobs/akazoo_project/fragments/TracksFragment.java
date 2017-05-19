@@ -9,13 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
 import journey.forjobs.akazoo_project.R;
 import journey.forjobs.akazoo_project.database.DBTableHelper;
 import journey.forjobs.akazoo_project.database.TracksContentProvider;
@@ -26,8 +26,12 @@ public class TracksFragment extends Fragment {
 
   @InjectView(R.id.tracks_list)
   ListView mTracksList;
-  @InjectView(R.id.playlist_title_tv)
-  TextView mPlaylistTitle;
+  @InjectView(R.id.header_playlist_art)
+  ImageView mPlaylistArt;
+  @InjectView(R.id.header_playlist_name)
+  TextView mPlaylistName;
+  @InjectView(R.id.header_number_of_tracks)
+  TextView mPlaylistNoOfTracks;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,7 +43,7 @@ public class TracksFragment extends Fragment {
 
   }
 
-  public void updateTracksList(String playlistTitle) {
+  public void updateTracksList(String imageurl, String playlistTitle, int tracksNo) {
     ArrayList<Track> allTracks = new ArrayList<>();
     Cursor mCursor;
 
@@ -53,8 +57,7 @@ public class TracksFragment extends Fragment {
     //queries the database
     mCursor = getActivity().getContentResolver().query(
         TracksContentProvider.CONTENT_URI,
-        // The content URI of the words table - You need to use TracksContentProvider.CONTENT_URI to test yours
-        mProjection,                       // The columns to return for each row
+        mProjection,
         null,
         null,
         null);
@@ -83,7 +86,9 @@ public class TracksFragment extends Fragment {
 
       final TracksListAdapter mTracksListAdapter = new TracksListAdapter(getActivity(), allTracks);
       mTracksList.setAdapter(mTracksListAdapter);
-      mPlaylistTitle.setText(playlistTitle);
+      mPlaylistName.setText(playlistTitle);
+      mPlaylistNoOfTracks.setText(Integer.toString(tracksNo));
+      Picasso.with(getContext()).load(imageurl).into(mPlaylistArt);
 
       mTracksList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

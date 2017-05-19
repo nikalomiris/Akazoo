@@ -1,7 +1,10 @@
 package journey.forjobs.akazoo_project.fragments;
 
+import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -11,11 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import java.util.ArrayList;
 import journey.forjobs.akazoo_project.R;
 import journey.forjobs.akazoo_project.activities.TracksActivity;
 import journey.forjobs.akazoo_project.database.DBTableHelper;
@@ -54,8 +55,7 @@ public class PlaylistsFragment extends Fragment {
     //queries the database
     mCursor = getActivity().getContentResolver().query(
         PlaylistContentProvider.CONTENT_URI,
-        // The content URI of the words table - You need to use TracksContentProvider.CONTENT_URI to test yours
-        mProjection,                       // The columns to return for each row
+        mProjection,
         null,
         null,
         null);
@@ -91,20 +91,18 @@ public class PlaylistsFragment extends Fragment {
 
       mPlaylistsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+        @TargetApi(VERSION_CODES.LOLLIPOP)
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                    showSnackbar("(Fragment) You have clicked on: " + mPlaylistsListAdapter.getPlaylists().
-//                            get(position).getName());
-
-          // TODO Check if the server response is correct
-
-          // TODO Create intent for launching tracks activity
           Intent intent = new Intent(getActivity(), TracksActivity.class);
           intent.putExtra("playlistId", mPlaylistsListAdapter.getPlaylists().get(position)
               .getPlaylistId());
-          intent.putExtra("playlistTitle", mPlaylistsListAdapter.getPlaylists().get(position)
-              .getName());
-          startActivity(intent);
+          intent.putExtra("playlistObject", mPlaylistsListAdapter.getPlaylists().get(position));
+
+          String transitionName = getString(R.string.transition_playlist_name);
+
+          ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, transitionName);
+          startActivity(intent, transitionActivityOptions.toBundle());
         }
 
       });
