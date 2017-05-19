@@ -8,6 +8,8 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,8 @@ import butterknife.InjectView;
 import java.util.ArrayList;
 import journey.forjobs.akazoo_project.R;
 import journey.forjobs.akazoo_project.activities.TracksActivity;
+import journey.forjobs.akazoo_project.application.AkazooApplication;
+import journey.forjobs.akazoo_project.controllers.AkazooController;
 import journey.forjobs.akazoo_project.database.DBTableHelper;
 import journey.forjobs.akazoo_project.database.PlaylistContentProvider;
 import journey.forjobs.akazoo_project.listadapters.PlaylistsListAdapter;
@@ -29,6 +33,8 @@ public class PlaylistsFragment extends Fragment {
 
   @InjectView(R.id.playlist_list)
   ListView mPlaylistsList;
+  @InjectView(R.id.swipe_to_refresh)
+  SwipeRefreshLayout swipeRefreshLayout;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +42,13 @@ public class PlaylistsFragment extends Fragment {
 
     View v = inflater.inflate(R.layout.fragment_playlists, container, false);
     ButterKnife.inject(this, v);
+    swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        AkazooApplication.getInstance().getmController().getPlaylists();
+        stopSwipeRefresh();
+      }
+    });
     return v;
 
   }
@@ -113,6 +126,10 @@ public class PlaylistsFragment extends Fragment {
     Snackbar mySnackbar = Snackbar.make(getActivity().findViewById(R.id.root),
         message, Snackbar.LENGTH_LONG);
     mySnackbar.show();
+  }
+
+  public void stopSwipeRefresh() {
+    swipeRefreshLayout.setRefreshing(false);
   }
 
 }
