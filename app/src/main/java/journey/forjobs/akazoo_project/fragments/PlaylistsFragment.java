@@ -1,6 +1,7 @@
 package journey.forjobs.akazoo_project.fragments;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 import journey.forjobs.akazoo_project.R;
 import journey.forjobs.akazoo_project.activities.TracksActivity;
 import journey.forjobs.akazoo_project.application.AkazooApplication;
-import journey.forjobs.akazoo_project.controllers.AkazooController;
 import journey.forjobs.akazoo_project.database.DBTableHelper;
 import journey.forjobs.akazoo_project.database.PlaylistContentProvider;
 import journey.forjobs.akazoo_project.listadapters.PlaylistsListAdapter;
@@ -30,6 +30,14 @@ import journey.forjobs.akazoo_project.model.Playlist;
 
 
 public class PlaylistsFragment extends Fragment {
+
+  CheckIfDbIsEmpty mCallback;
+  Cursor mCursor;
+
+  // Container Activity must implement this interface
+  public interface CheckIfDbIsEmpty {
+    void onDbChecked(Cursor mCursor);
+  }
 
   @InjectView(R.id.playlist_list)
   ListView mPlaylistsList;
@@ -46,7 +54,6 @@ public class PlaylistsFragment extends Fragment {
       @Override
       public void onRefresh() {
         AkazooApplication.getInstance().getmController().getPlaylists();
-        stopSwipeRefresh();
       }
     });
     return v;
@@ -55,7 +62,6 @@ public class PlaylistsFragment extends Fragment {
 
   public void updatePlaylistList() {
     ArrayList<Playlist> allPlaylists = new ArrayList<>();
-    Cursor mCursor;
 
     //used to know which columns name we need to retrieve
     String[] mProjection = {

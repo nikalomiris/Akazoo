@@ -21,6 +21,7 @@ public class PlaylistsActivity extends AkazooActivity {
         getAkazooController().getPlaylists();
       } else if (message.equals(Const.REST_PLAYLISTS_SUCCESS)) {
         mPlaylistsFragment.updatePlaylistList();
+        mPlaylistsFragment.stopSwipeRefresh();
       }
     }
   };
