@@ -24,6 +24,7 @@ public class DBTableHelper extends SQLiteOpenHelper {
   public static final String COLUMN_PLAYLISTS_ID = "_id";
   public static final String COLUMN_PLAYLISTS_NAME = "playlist_name";
   public static final String COLUMN_PLAYLISTS_TRACK_COUNT = "playlist_track_count";
+  public static final String COLUMN_PLAYLISTS_IMAGE_URL = "playlist_image_url";
   public static final String COLUMN_PLAYLISTS_PLAYLIST_ID = "playlist_id";
 
   // Table Tracks
@@ -33,12 +34,14 @@ public class DBTableHelper extends SQLiteOpenHelper {
   public static final String COLUMN_TRACK_ARTIST = "track_artist";
   public static final String COLUMN_TRACK_IMAGE_URL = "track_image_url";
 
-  // SQL statement to create table users
+  // SQL statement to create table playlists
   private static final String CREATE_TABLE_PLAYLISTS =
-      "create table " + TABLE_PLAYLISTS + "(" + COLUMN_PLAYLISTS_ID
-          + " integer primary key autoincrement, " + COLUMN_PLAYLISTS_NAME + " text, "
-          + COLUMN_PLAYLISTS_TRACK_COUNT
-          + " integer, " + COLUMN_PLAYLISTS_PLAYLIST_ID + " text" + ");";
+      "create table " + TABLE_PLAYLISTS + "("
+          + COLUMN_PLAYLISTS_ID + " integer primary key autoincrement, "
+          + COLUMN_PLAYLISTS_NAME + " text, "
+          + COLUMN_PLAYLISTS_TRACK_COUNT + " integer, "
+          + COLUMN_PLAYLISTS_IMAGE_URL + " text, "
+          + COLUMN_PLAYLISTS_PLAYLIST_ID + " text" + ");";
 
   // SQL statement to create table tracks
   private static final String CREATE_TABLE_TRACKS =

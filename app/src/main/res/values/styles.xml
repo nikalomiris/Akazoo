@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
   <!-- Base application theme. -->
   <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -31,5 +31,8 @@
     <item name="android:background">?android:attr/listDivider</item>
   </style>
 
+  <style name="MaterialAnimations" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+  </style>
 
 </resources>

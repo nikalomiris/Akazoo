@@ -23,7 +23,12 @@ public abstract class AkazooActivity extends AppCompatActivity {
 
     protected String message;
 
-    //method that will be called when a broadcast message is received
+    /**
+     * Broadcast receiver implementation that performs actions that any child activity should
+     * when receiving certain messages.
+     * @param context
+     * @param intent
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
       if (intent.getAction().equals(Const.CONTROLLER_SUCCESSFULL_CALLBACK)) {
@@ -41,11 +46,17 @@ public abstract class AkazooActivity extends AppCompatActivity {
     }
   }
 
-  //TODO implement the showCustomDialog method
+  protected abstract MyMessageReceiver getmMessageReceiver();
+
+  /**
+   * Error dialog that appears when CONTROLLER_FAILURE_CALLBACK_MESSAGE is received
+   * @param message String variable with the message that should be displayed in the dialog
+   */
   protected void showErrorDialog(String message) {
     final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
     alertDialog.setMessage(message);
     alertDialog.setTitle(getString(R.string.popup_error_title));
+    alertDialog.setIcon(R.drawable.ic_error_outline_red_400_24dp);
     alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getString(R.string.popup_neutral_button),
         new DialogInterface.OnClickListener() {
           @Override
@@ -56,16 +67,21 @@ public abstract class AkazooActivity extends AppCompatActivity {
     alertDialog.show();
   }
 
-  protected abstract MyMessageReceiver getmMessageReceiver();
-
   ProgressDialog dialog;
 
+  /**
+   * Progress dialog that appears while loading data from the server.
+   * @param message
+   */
   protected void showProgressDialog(String message) {
     dialog = new ProgressDialog(this);
     dialog.setMessage(message);
     dialog.show();
   }
 
+  /**
+   * Hides the progress dialog when loading data is finished.
+   */
   protected void hideProgressDialog() {
     if (dialog != null) {
       dialog.dismiss();
@@ -76,6 +92,9 @@ public abstract class AkazooActivity extends AppCompatActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    /**
+     * Create broadcast receiver for the CONTROLLER_SUCCESSFULL_CALLBACK messages.
+     */
     LocalBroadcastManager.getInstance(this).registerReceiver(getmMessageReceiver(),
         new IntentFilter(Const.CONTROLLER_SUCCESSFULL_CALLBACK));
   }
@@ -83,8 +102,10 @@ public abstract class AkazooActivity extends AppCompatActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    //Enable activity to listen to broadcast messages
 
+    /**
+     * Create broadcast receiver for the CONTROLLER_FAILURE_CALLBACK messages.
+     */
     LocalBroadcastManager.getInstance(this).registerReceiver(getmMessageReceiver(),
         new IntentFilter(Const.CONTROLLER_FAILURE_CALLBACK));
   }
@@ -92,10 +113,17 @@ public abstract class AkazooActivity extends AppCompatActivity {
   @Override
   protected void onPause() {
     super.onPause();
-    //Disable activity to listen broadcast messages
+
+    /**
+     * Stops activity from listening for broadcast messages when not active.
+     */
     LocalBroadcastManager.getInstance(this).unregisterReceiver(getmMessageReceiver());
   }
 
+  /**
+   * Method used by child activities to get access to the controller.
+   * @return Akazoo controller.
+   */
   protected AkazooController getAkazooController() {
     AkazooController mController = AkazooApplication.getInstance().getmController();
     return mController;

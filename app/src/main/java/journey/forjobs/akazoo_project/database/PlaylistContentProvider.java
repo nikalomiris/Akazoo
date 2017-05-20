@@ -175,6 +175,7 @@ public class PlaylistContentProvider extends ContentProvider {
   private void checkColumns(String[] projection) {
     String[] available = {DBTableHelper.COLUMN_PLAYLISTS_NAME,
         DBTableHelper.COLUMN_PLAYLISTS_TRACK_COUNT,
+        DBTableHelper.COLUMN_PLAYLISTS_IMAGE_URL,
         DBTableHelper.COLUMN_PLAYLISTS_ID,
         DBTableHelper.COLUMN_PLAYLISTS_PLAYLIST_ID};
     if (projection != null) {

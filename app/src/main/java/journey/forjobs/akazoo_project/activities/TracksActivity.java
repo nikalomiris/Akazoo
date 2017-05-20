@@ -2,25 +2,33 @@ package journey.forjobs.akazoo_project.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
-
 import butterknife.ButterKnife;
 import journey.forjobs.akazoo_project.R;
 import journey.forjobs.akazoo_project.fragments.TracksFragment;
+import journey.forjobs.akazoo_project.model.Playlist;
 import journey.forjobs.akazoo_project.utils.Const;
 
 public class TracksActivity extends AkazooActivity {
 
   private MyMessageReceiver mMessageReceiver = new MyMessageReceiver() {
+
+    /**
+     * Broadcast receiver implementation that performs additional actions specifically useful
+     * to the tracks activity.
+     *
+     * When REST_TRACKS_SUCCESS message is received, the tracks list is ready to be displayed
+     * in the list view of the fragment.
+     *
+     * @param context
+     * @param intent
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
       super.onReceive(context, intent);
-      if (intent.getAction().equals(Const.SERVICE_BIND)) {
-        getAkazooController().getTracks("2a09e82b-7df8-4988-a371-90c64fb67586");
-      } else if (message.equals(Const.REST_TRACKS_SUCCESS)) {
-        mTracksFragment.updateTracksList(playlistTitle);
+      if (message.equals(Const.REST_TRACKS_SUCCESS)) {
+        mTracksFragment.updateTracksList(playlistObject.getPhotoUrl(), playlistObject.getName(),
+            playlistObject.getItemCount());
       }
     }
   };
@@ -32,7 +40,7 @@ public class TracksActivity extends AkazooActivity {
 
   TracksFragment mTracksFragment;
   String playlistId;
-  String playlistTitle;
+  Playlist playlistObject;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +48,20 @@ public class TracksActivity extends AkazooActivity {
     setContentView(R.layout.activity_tracks);
     ButterKnife.inject(this);
 
-    LocalBroadcastManager.getInstance(this).registerReceiver(getmMessageReceiver(),
-        new IntentFilter(Const.SERVICE_BIND));
-
     if (savedInstanceState == null) {
       mTracksFragment = new TracksFragment();
       getSupportFragmentManager().beginTransaction().add(R.id.root, mTracksFragment).commit();
     }
 
-    //TODO Receive intent and get playlist id
+    /**
+     * Extract playlist id from the received intent and use it to get the tracks list of that
+     * playlist.
+     *
+     * Also extract the Playlist that was clicked and display some of its attributes at the top
+     * of the tracks list.
+     */
     playlistId = getIntent().getStringExtra("playlistId");
-    playlistTitle = getIntent().getStringExtra("playlistTitle");
+    playlistObject = (Playlist) getIntent().getSerializableExtra("playlistObject");
     getAkazooController().getTracks(playlistId);
   }
 }

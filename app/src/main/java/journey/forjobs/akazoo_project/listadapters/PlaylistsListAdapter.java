@@ -5,13 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
+import java.util.List;
 import journey.forjobs.akazoo_project.R;
 import journey.forjobs.akazoo_project.model.Playlist;
 
@@ -32,6 +32,8 @@ public class PlaylistsListAdapter extends ArrayAdapter<Playlist> {
     TextView playlistName;
     @InjectView(R.id.number_of_tracks)
     TextView numberOfTrucks;
+    @InjectView(R.id.playlist_art)
+    ImageView playlistArt;
 
     public ViewHolder(View view) {
       ButterKnife.inject(this, view);
@@ -54,7 +56,8 @@ public class PlaylistsListAdapter extends ArrayAdapter<Playlist> {
     }
     holder.playlistName.setText(mPlaylists.get(position).getName());
     holder.numberOfTrucks.setText(Integer.toString(mPlaylists.get(position).getItemCount())
-        + " tracks");
+        + " Tracks");
+    Picasso.with(getContext()).load(mPlaylists.get(position).getPhotoUrl()).into(holder.playlistArt);
     return view;
   }
 
