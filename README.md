@@ -1,5 +1,5 @@
 # Akazoo
-Consepts involved:
+Concepts involved:
 <ul>
   <li>Creating and using styles</li>
   <li>MVC project architecture
