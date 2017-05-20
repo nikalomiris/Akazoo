@@ -14,6 +14,20 @@ import journey.forjobs.akazoo_project.utils.Const;
 public class PlaylistsActivity extends AkazooActivity {
 
   private MyMessageReceiver mMessageReceiver = new MyMessageReceiver() {
+
+    /**
+     * Broadcast receiver implementation that performs additional actions specifically useful
+     * to the playlist activity.
+     *
+     * When SERVICE_BIND message is received, service bind is completed and the controllers methods
+     * can be used.
+     *
+     * When REST_PLAYLISTS_SUCCESS message is received, the playlist list is ready to be displayed
+     * in the list view of the fragment.
+     *
+     * @param context
+     * @param intent
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
       super.onReceive(context, intent);
@@ -21,6 +35,7 @@ public class PlaylistsActivity extends AkazooActivity {
         getAkazooController().getPlaylists();
       } else if (message.equals(Const.REST_PLAYLISTS_SUCCESS)) {
         mPlaylistsFragment.updatePlaylistList();
+        mPlaylistsFragment.stopSwipeRefresh();
       }
     }
   };
@@ -38,6 +53,9 @@ public class PlaylistsActivity extends AkazooActivity {
     setContentView(R.layout.activity_playlists);
     ButterKnife.inject(this);
 
+    /**
+     * Create broadcast receiver for the SERVICE_BIND messages.
+     */
     LocalBroadcastManager.getInstance(this).registerReceiver(getmMessageReceiver(),
         new IntentFilter(Const.SERVICE_BIND));
 
@@ -47,6 +65,9 @@ public class PlaylistsActivity extends AkazooActivity {
     }
   }
 
+  /**
+   * Updates the list view when the activity gets active.
+   */
   @Override
   protected void onResume() {
     super.onResume();

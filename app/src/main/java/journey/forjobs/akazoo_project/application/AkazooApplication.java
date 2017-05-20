@@ -10,10 +10,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import journey.forjobs.akazoo_project.controllers.AkazooController;
 import journey.forjobs.akazoo_project.utils.Const;
 
-
-/**
- * Created by Petros Efthymiou on 22/7/2016.
- */
 public class AkazooApplication extends Application {
 
   AkazooController.LocalBinder mLocalBinder;
