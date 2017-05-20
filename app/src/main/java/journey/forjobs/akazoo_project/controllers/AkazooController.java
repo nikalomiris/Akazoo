@@ -25,7 +25,6 @@ public class AkazooController extends Service {
   IBinder mBinder = new LocalBinder();
 
   public AkazooController() {
-
   }
 
   @Override
@@ -33,14 +32,12 @@ public class AkazooController extends Service {
     return mBinder;
   }
 
-
   @Override
   public void onDestroy() {
     super.onDestroy();
   }
 
   public class LocalBinder extends Binder {
-
     public AkazooController getServerInstance() {
       return AkazooController.this;
     }
@@ -64,6 +61,15 @@ public class AkazooController extends Service {
     LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
   }
 
+  /**
+   * Method for getting the playlists from server.
+   *
+   * First calls the server through RestClient expecting a GetPlaylistsResponse kind of response.
+   *
+   * Then if HTTP client returns no error, business logic is checked. If correct then the database
+   * gets updated and a success message is sent. Else handleFailure method is called, which
+   * broadcast a failure message.
+   */
   public void getPlaylists() {
     Call<GetPlaylistsResponse> call = RestClient.call().getPlaylists();
     call.enqueue(new ControllerRestCallback<GetPlaylistsResponse>() {
@@ -96,6 +102,17 @@ public class AkazooController extends Service {
     });
   }
 
+  /**
+   * Method for getting the tracks from server.
+   *
+   * First calls the server through RestClient expecting a GetTracksResponse kind of response.
+   *
+   * Then if HTTP client returns no error, business logic is checked. If correct then the database
+   * gets updated and a success message is sent. Else handleFailure method is called, which
+   * broadcast a failure message.
+   *
+   * @param playlistId Id of the playlist we want the tracks of.
+   */
   public void getTracks(String playlistId) {
     Call<GetTracksResponse> call = RestClient.call().getTracks(playlistId);
     call.enqueue(new ControllerRestCallback<GetTracksResponse>() {

@@ -34,7 +34,7 @@ public class DBTableHelper extends SQLiteOpenHelper {
   public static final String COLUMN_TRACK_ARTIST = "track_artist";
   public static final String COLUMN_TRACK_IMAGE_URL = "track_image_url";
 
-  // SQL statement to create table users
+  // SQL statement to create table playlists
   private static final String CREATE_TABLE_PLAYLISTS =
       "create table " + TABLE_PLAYLISTS + "("
           + COLUMN_PLAYLISTS_ID + " integer primary key autoincrement, "
