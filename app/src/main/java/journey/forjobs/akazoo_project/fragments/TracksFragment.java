@@ -22,6 +22,7 @@ import journey.forjobs.akazoo_project.database.TracksContentProvider;
 import journey.forjobs.akazoo_project.listadapters.TracksListAdapter;
 import journey.forjobs.akazoo_project.model.Track;
 
+// TODO: 21/5/2017 Display tracks images
 public class TracksFragment extends Fragment {
 
   @InjectView(R.id.tracks_list)

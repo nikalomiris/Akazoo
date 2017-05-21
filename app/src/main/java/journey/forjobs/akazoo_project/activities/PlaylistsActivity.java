@@ -11,6 +11,7 @@ import journey.forjobs.akazoo_project.R;
 import journey.forjobs.akazoo_project.fragments.PlaylistsFragment;
 import journey.forjobs.akazoo_project.utils.Const;
 
+// TODO: 21/5/2017 Except the first time that app runs, refresh playlist from server only when user asks to.
 public class PlaylistsActivity extends AkazooActivity {
 
   PlaylistsFragment mPlaylistsFragment;

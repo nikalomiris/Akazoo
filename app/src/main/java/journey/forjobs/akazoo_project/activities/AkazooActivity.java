@@ -36,6 +36,7 @@ public abstract class AkazooActivity extends AppCompatActivity {
       if (intent.getAction().equals(Const.CONTROLLER_SUCCESSFULL_CALLBACK)) {
         message = intent.getStringExtra(Const.CONTROLLER_SUCCESSFULL_CALLBACK_MESSAGE);
         if (message.equals(Const.SHOW_SPINNER)) {
+          // TODO: 21/5/2017 Don't show in playlists activity
           showProgressDialog(getString(R.string.progress_dialog_message));
         } else {
           hideProgressDialog();
