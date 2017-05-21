@@ -11,6 +11,10 @@ import journey.forjobs.akazoo_project.utils.Const;
 
 public class TracksActivity extends AkazooActivity {
 
+  TracksFragment mTracksFragment;
+  String playlistId;
+  Playlist playlistObject;
+
   private MyMessageReceiver mMessageReceiver = new MyMessageReceiver() {
 
     /**
@@ -37,10 +41,6 @@ public class TracksActivity extends AkazooActivity {
   protected MyMessageReceiver getmMessageReceiver() {
     return mMessageReceiver;
   }
-
-  TracksFragment mTracksFragment;
-  String playlistId;
-  Playlist playlistObject;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

@@ -19,6 +19,8 @@ import journey.forjobs.akazoo_project.utils.Const;
 
 public abstract class AkazooActivity extends AppCompatActivity {
 
+  ProgressDialog dialog;
+
   public class MyMessageReceiver extends BroadcastReceiver {
 
     protected String message;
@@ -66,8 +68,6 @@ public abstract class AkazooActivity extends AppCompatActivity {
         });
     alertDialog.show();
   }
-
-  ProgressDialog dialog;
 
   /**
    * Progress dialog that appears while loading data from the server.

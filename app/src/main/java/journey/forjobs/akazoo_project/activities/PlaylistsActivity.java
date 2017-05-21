@@ -13,6 +13,8 @@ import journey.forjobs.akazoo_project.utils.Const;
 
 public class PlaylistsActivity extends AkazooActivity {
 
+  PlaylistsFragment mPlaylistsFragment;
+
   private MyMessageReceiver mMessageReceiver = new MyMessageReceiver() {
 
     /**
@@ -44,8 +46,6 @@ public class PlaylistsActivity extends AkazooActivity {
   protected MyMessageReceiver getmMessageReceiver() {
     return mMessageReceiver;
   }
-
-  PlaylistsFragment mPlaylistsFragment;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
