@@ -9,9 +9,10 @@
     android:id="@+id/playlist_header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
     android:columnCount="2"
     android:rowCount="1"
-    android:transitionName="@string/transition_playlist_name" >
+    android:transitionName="@string/transition_playlist_name">
 
     <ImageView
       android:id="@+id/header_playlist_art"

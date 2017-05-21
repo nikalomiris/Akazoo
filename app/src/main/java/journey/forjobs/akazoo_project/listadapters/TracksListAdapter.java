@@ -1,19 +1,17 @@
 package journey.forjobs.akazoo_project.listadapters;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
+import java.util.List;
 import journey.forjobs.akazoo_project.R;
 import journey.forjobs.akazoo_project.model.Track;
 
@@ -34,6 +32,8 @@ public class TracksListAdapter extends ArrayAdapter<Track> {
 
   static class ViewHolder {
 
+    @InjectView(R.id.track_art)
+    ImageView trackArt;
     @InjectView(R.id.track_name)
     TextView trackName;
     @InjectView(R.id.track_artist)
@@ -58,6 +58,7 @@ public class TracksListAdapter extends ArrayAdapter<Track> {
       holder = new ViewHolder(view);
       view.setTag(holder);
     }
+    Picasso.with(getContext()).load(tracks.get(position).getImageUrl()).into(holder.trackArt);
     holder.trackName.setText(tracks.get(position).getTrackName());
     holder.trackArtist.setText(tracks.get(position).getArtistName());
     return view;
